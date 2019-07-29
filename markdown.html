@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Markdown Previewer</title>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="math.js" type="text/javascript"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <link href="markdown.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Teko&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Teko&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <div id="container"></div>
+
+    <script type="text/babel">
+      marked.setOptions({
+        breaks: true
+      });
+      var destination = document.querySelector("#container");
+      var plx = `# Welcome to Markdown Editor!  
+      \r_**(Read on to learn how to use markdown!)**_  
+      \r[Markdown - Wikipedia](https://en.wikipedia.org/wiki/Markdown)  
+      \r# Create H1 headline by prefixing with '# '  
+      \r## Create H2 headline by prefixing with '## '  
+      \r---
+      \rBold text: **HTML**  
+      \rItalicised text: _CSS_  
+      \r---
+      \rBlock Quote Example:  
+      \r>"Just Do It"! -Nike  
+      \r---
+      \rExample of list:  
+      \r* Item 1
+      \r* Item 2
+      \r* Item 3 ,etc.
+      \r---
+      \rInline Code:\`<div></div>\`  
+      \rCode Block:  
+      \r      
+      function(x){
+        return x
+      }  
+      \r![React Logo w/ Text](https://goo.gl/Umyytc)
+      
+      `;
+
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+
+          this.state = {
+            markdown: plx
+          };
+
+          this.updateMarkdown = this.updateMarkdown.bind(this);
+        }
+
+        updateMarkdown(event) {
+          this.setState({
+            markdown: event.target.value
+          });
+        }
+
+        render() {
+          return (
+            <div id="app">
+              <div id="ed">
+                <h2>
+                  Markdown Editor <i class="fa fa-edit" />
+                </h2>
+
+                <form>
+                  <textarea
+                    id="editor"
+                    placeholder="Enter your code here"
+                    value={this.state.markdown}
+                    onChange={this.updateMarkdown}
+                    spellcheck="false"
+                  />
+                </form>
+              </div>
+              <div id="prev">
+                <h2>
+                  Markdown Previewer <i class="fa fa-eye" />
+                </h2>
+                <div
+                  id="preview"
+                  dangerouslySetInnerHTML={{
+                    __html: marked(this.state.markdown)
+                  }}
+                />
+              </div>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<App />, destination);
+    </script>
+  </body>
+</html>
