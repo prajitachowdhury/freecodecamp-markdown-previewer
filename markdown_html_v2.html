@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Markdown Previewer</title>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="math.js" type="text/javascript"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <link href="markdown.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Teko&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Alegreya+Sans|Teko&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <div id="container"></div>
+
+    <script type="text/babel">
+      marked.setOptions({
+        breaks: true
+      });
+      var destination = document.querySelector("#container");
+      var plx = `\r
+      \r## Welcome to Markdown Editor!  
+      
+      \r**Syntax for writing in Markdown:**  
+      \r1. **Headings**: 
+      \r- For H1 heading, add "# " as prefix to the text. Siimilarly, for H2 headings, add "## " as prefix. Similar rule will apply for H3, H4, etc.. For e.g.: 
+      \r# Heading 1
+      \r## Heading 2
+      \r### Heading 3
+      
+      \r2. **Styling text**: 
+      \r- To **bold** text, add __two__ asterisks or underscores before and after a word or phrase.
+      \r- To _*italicise text*_ , begin the text with "_*" and end with "*_".
+      
+      \r3. **Creating Lists**:
+      \r- To create ordered list,  add line items with numbers before each list item.
+      \r- To create unordered list, add asteriks(*) or dashes(-) before each list item.
+      
+      \r4. **Line Breaks**:
+      \r- End a line with two or more spaces, and then type return.  
+      
+      `;
+
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+
+          this.state = {
+            markdown: plx
+          };
+
+          this.updateMarkdown = this.updateMarkdown.bind(this);
+        }
+
+        updateMarkdown(event) {
+          this.setState({
+            markdown: event.target.value
+          });
+        }
+
+        render() {
+          return (
+            <div id="app">
+              <div id="ed">
+                <h2>
+                  Markdown Editor <i class="fa fa-edit" />
+                </h2>
+
+                <form>
+                  <textarea
+                    class="scrollbar"
+                    id="editor"
+                    placeholder="Enter your code here"
+                    value={this.state.markdown}
+                    onChange={this.updateMarkdown}
+                    spellcheck="false"
+                  />
+                </form>
+              </div>
+              <div id="prev">
+                <h2>
+                  Markdown Previewer <i class="fa fa-eye" />
+                </h2>
+                <div
+                  id="preview"
+                  dangerouslySetInnerHTML={{
+                    __html: marked(this.state.markdown)
+                  }}
+                />
+              </div>
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(<App />, destination);
+    </script>
+  </body>
+</html>
