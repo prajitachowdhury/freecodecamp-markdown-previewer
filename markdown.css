@@ -16,8 +16,8 @@ body {
   margin-right: 5px;
   width: 50%;
   border-style: solid;
-  border-color: rgb(22, 21, 21);
-  border-radius: 10px;
+  border-color: rgb(3, 80, 80);
+  border-radius: 10px 10px 2px 2px;
   height: 100%;
 }
 
@@ -28,18 +28,18 @@ body {
   margin-right: 10px;
   width: 50%;
   border-style: solid;
-  border-color: rgb(1, 2, 3);
-  border-radius: 10px;
+  border-color: rgb(57, 136, 97);
+  border-radius: 10px 10px 2px 2px;
   height: 100%;
 }
 #ed > h2 {
-  background-color: rgb(145, 139, 127);
-  color: black;
+  background-color: rgb(3, 80, 80); /* rgb(145, 139, 127);*/
+  color: white;
   margin-top: 0;
   margin-bottom: 0px;
   min-height: 5vh;
   padding: 0;
-  border-color: rgb(22, 21, 21);
+  border-color: rgb(3, 80, 80);
   border-style: solid;
   border-radius: 5px 5px 0 0;
   text-align: center;
@@ -48,13 +48,14 @@ body {
 }
 
 #prev > h2 {
-  background-color: rgb(23, 28, 51);
+  background-color: rgb(57, 136, 97); /*rgba(188, 202, 122, 0.623);*/
+
   color: white;
   margin-top: 0;
   margin-bottom: 0;
   min-height: 5vh;
   padding: 0;
-  border-color: rgb(10, 12, 22);
+  border-color: rgb(57, 136, 97);
   border-style: solid;
   border-radius: 5px 5px 0 0;
   text-align: center;
@@ -63,24 +64,25 @@ body {
 }
 
 #editor {
-  background-color: #fcf8f8;
+  background-color: white;
   min-width: 98%;
   margin-top: 0;
   padding-left: 10px;
   color: #1a1a0e;
   font-size: 15px;
   height: 89.5vh;
-  overflow: fixed;
+  overflow-y: scroll;
   resize: none;
   border-style: solid;
   border-width: 2px;
-  border-color: rgb(22, 21, 19);
-  border-radius: 0 0 5px 5px;
-  font-family: "Roboto Mono";
+  border-color: rgb(3, 80, 80);
+  border-radius: 0 0 2px 2px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 0.5cm;
 }
 
 #preview {
-  background-color: #fafafa;
+  background-color: white;
   min-width: 97%;
   margin-top: 0;
   margin-right: 0;
@@ -89,9 +91,9 @@ body {
   overflow: scroll;
   padding-top: 0;
   resize: none;
-  border-style: solid;
-  border-color: rgb(10, 12, 22);
+  border-style: ridge;
+  border-color: rgb(25, 43, 44);
   border-width: 4px;
-  border-radius: 0 0 10px 10px;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  border-radius: 0 0 2px 2px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
